@@ -1,3 +1,7 @@
+<link rel="stylesheet" type="text/css" href="reset.css">
+<link rel="stylesheet" type="text/css" href="timeline.css">
+<link href="https://fonts.googleapis.com/css?family=Arimo:400,700" rel="stylesheet">
+
 <?php
 
 require '../vendor/autoload.php';
@@ -26,16 +30,28 @@ foreach ($events as $days => $event):
 
 	$events[$days]['date'] = $carbonDOB->format('jS \o\f F, Y');
 endforeach;
-
 //var_dump($events);
 
-
-foreach ($events as $days => $event):
-	?>
-	<h2><?php echo $event['title']; ?></h2>
-	<h3><?php echo $event['date']; ?></h3>
-	<p>(<?php echo $event['who']; ?>)</p>
-	<br/><br/>
-	<?php
-endforeach;
 ?>
+
+<div id="timeline-wrapper">
+
+	<h1 id="timeline-title">Life Timeline</h1>
+
+	<?php
+	foreach ($events as $days => $event):
+		?>
+		<div class="timeline-event">
+			<p class="event-header">
+				<span class="event-date"><?php echo $event['date']; ?></span>: 
+				<span class="event-title"><?php echo $event['title']; ?></span>
+			</p>
+			<p class="event-who">
+				<?php echo $event['who']; ?>
+			</p>
+		</div>
+	<?php
+	endforeach;
+	?>
+
+</div>

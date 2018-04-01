@@ -4,6 +4,33 @@ body {
 	font-family: 'Arimo', sans-serif;
 }
 
+
+
+#dob_form {
+	text-align: center;
+}
+
+.dob_instruction {
+	font-size: 1.2em;
+	letter-spacing: 0.03em;
+	margin: 15px;
+}
+
+#dob_input {
+	margin: 10px;
+}
+
+#dob_submit {
+	background: #D5BBB1;
+	color: black;
+	border-style: outset;
+	font-weight: bold;
+	text-shadow: none;
+}
+
+
+
+
 #timeline-wrapper {
 	margin: 0 auto;
 	width: 50%;

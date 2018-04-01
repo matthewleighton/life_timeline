@@ -1,5 +1,16 @@
-<h1>Enter your date of birth</h1>
-<form method="POST" action="submit.php">
-	<input type="date" name="dob" value="1993-04-17">
-	<input type="submit">
-</form>
+<link rel="stylesheet" type="text/css" href="reset.css">
+<link rel="stylesheet" type="text/css" href="timeline.css">
+<link href="https://fonts.googleapis.com/css?family=Arimo:400,700" rel="stylesheet">
+
+<body>
+	
+	<h1 id="timeline-title">Life Timeline</h1>
+
+	<?php
+	if (empty($_POST['dob'])):
+		require '../pages/dob_form.php';
+	else:
+		require '../pages/timeline_results.php';
+	endif;
+	?>
+</body>

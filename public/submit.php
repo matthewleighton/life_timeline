@@ -20,12 +20,22 @@ $events = array(
 
 $userDOB = $_POST['dob'];
 
-foreach ($events as $days => $event) {
+foreach ($events as $days => $event):
 	$carbonDOB = new Carbon($userDOB);
 	$carbonDOB->addDays($days);
 
-	$event['date'] = $carbonDOB->format('jS \o\f F, Y');
+	$events[$days]['date'] = $carbonDOB->format('jS \o\f F, Y');
+endforeach;
 
-	var_dump($event);
-}
+//var_dump($events);
+
+
+foreach ($events as $days => $event):
+	?>
+	<h2><?php echo $event['title']; ?></h2>
+	<h3><?php echo $event['date']; ?></h3>
+	<p>(<?php echo $event['who']; ?>)</p>
+	<br/><br/>
+	<?php
+endforeach;
 ?>

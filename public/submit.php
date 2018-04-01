@@ -11,21 +11,21 @@ $events = array(
 	9999 => array(
 		'title' => 'Did a thing',
 		'who' => 'Some Dude'
+	),
+	44724 => array(
+		'title' => 'Oldest living person dies',
+		'who' => 'Jeanne Calment'
 	)
 );
 
-$dob = '17-04-1993';
-
-#Carbon::setToStringFormat('jS \o\f F, Y');
+$userDOB = $_POST['dob'];
 
 foreach ($events as $days => $event) {
-	$carbonDOB = new Carbon($dob);
+	$carbonDOB = new Carbon($userDOB);
 	$carbonDOB->addDays($days);
 
 	$event['date'] = $carbonDOB->format('jS \o\f F, Y');
 
 	var_dump($event);
-
-	// 1st April 2018
 }
 ?>

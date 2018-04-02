@@ -1,38 +1,9 @@
 <?php
-
-require '../vendor/autoload.php';
-use Carbon\Carbon;
-
-require '../events.php';
-
-/*
-$events = array(
-	9115 => array(
-		'title' => 'Walk on the moon.',
-		'who' => 'Neil Armstrong'
-	),
-	9999 => array(
-		'title' => 'Did a thing',
-		'who' => 'Some Dude'
-	),
-	44724 => array(
-		'title' => 'Oldest living person dies',
-		'who' => 'Jeanne Calment'
-	)
-);
-*/
+require '../timeline_helper.php';
 
 $userDOB = $_POST['dob'];
-
-foreach ($events as $id => $event):
-	$carbonDOB = new Carbon($userDOB);
-	$carbonDOB->addDays($event['days']);
-
-	$events[$id]['date'] = $carbonDOB->format('jS \o\f F, Y');
-endforeach;
-
-//echo"<pre>";print_r($events);die;
-
+$events = Timeline_Helper::getEventsFromDB();
+$events = Timeline_Helper::addUserSpecificDataToEvents($events, $userDOB);
 ?>
 
 <div id="timeline-wrapper">

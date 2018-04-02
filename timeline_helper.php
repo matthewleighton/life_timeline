@@ -24,9 +24,12 @@ class Timeline_Helper {
 			$userDOB = new Carbon($userDOB);
 			
 			// Add event date.
-			$eventDate = clone $userDOB;
-			$eventDate->addDays($event['days']);
+			$eventDate = $userDOB->copy()->addDays($event['days']);
 			$events[$id]['date'] = $eventDate->format('jS \o\f F, Y');
+
+			// Add age at date.
+			$age = $eventDate->diffInYears($userDOB);
+			$events[$id]['age'] = $age;
 		endforeach;
 
 		return $events;

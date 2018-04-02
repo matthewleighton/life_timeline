@@ -3,6 +3,9 @@
 require '../vendor/autoload.php';
 use Carbon\Carbon;
 
+require '../events.php';
+
+/*
 $events = array(
 	9115 => array(
 		'title' => 'Walk on the moon.',
@@ -17,16 +20,18 @@ $events = array(
 		'who' => 'Jeanne Calment'
 	)
 );
+*/
 
 $userDOB = $_POST['dob'];
 
-foreach ($events as $days => $event):
+foreach ($events as $id => $event):
 	$carbonDOB = new Carbon($userDOB);
-	$carbonDOB->addDays($days);
+	$carbonDOB->addDays($event['days']);
 
-	$events[$days]['date'] = $carbonDOB->format('jS \o\f F, Y');
+	$events[$id]['date'] = $carbonDOB->format('jS \o\f F, Y');
 endforeach;
-//var_dump($events);
+
+//echo"<pre>";print_r($events);die;
 
 ?>
 

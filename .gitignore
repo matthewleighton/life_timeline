@@ -69,3 +69,4 @@ $RECYCLE.BIN/
 
 composer.lock
 vendor
+db_config.php

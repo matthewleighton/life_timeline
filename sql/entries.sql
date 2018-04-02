@@ -1,0 +1,5 @@
+INSERT INTO `events` (`id`, `title`, `days`, `who`, `type`, `description`, `image`) VALUES (NULL, 'Walk on the moon', '14230', 'Neil Armstrong', '', '', '');
+INSERT INTO `events` (`id`, `title`, `days`, `who`, `type`, `description`, `image`) VALUES (NULL, 'Oldest living person dies', '44724', 'Jeanne Calment', 'death', '', '');
+INSERT INTO `events` (`id`, `title`, `days`, `who`, `type`, `description`, `image`) VALUES (NULL, 'Publish Looking for Alaska', '10053', 'John Green', 'book', '', '');
+INSERT INTO `events` (`id`, `title`, `days`, `who`, `type`, `description`, `image`) VALUES (NULL, 'Publish paper on Special Relativity', '9692', 'Albert Einstein', 'science', '', '');
+INSERT INTO `events` (`id`, `title`, `days`, `who`, `type`, `description`, `image`) VALUES (NULL, 'Buddy Holly dies', '8184', 'Buddy Holly', 'music,death', '', '');

@@ -4,8 +4,13 @@ body {
 	font-family: 'Arimo', sans-serif;
 }
 
+#page-wrapper {
+	margin: 0 auto;
+	width: 50%;
+}
 
 
+/* DOB Entry Page */
 #dob_form {
 	text-align: center;
 }
@@ -28,12 +33,21 @@ body {
 	text-shadow: none;
 }
 
+/* Timeline Options */
+#options-wrapper {
+	text-align: center;
+}
+
+.type-toggle {
+	margin: 0 auto;
+	cursor: pointer;
+}
+
 
 
 
 #timeline-wrapper {
 	margin: 0 auto;
-	width: 50%;
 }
 
 #timeline-title {
@@ -57,4 +71,9 @@ body {
 
 .event-sub {
 	font-size: 0.8em;
+}
+
+/* Event types */
+.history {
+
 }

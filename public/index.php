@@ -3,14 +3,17 @@
 <link href="https://fonts.googleapis.com/css?family=Arimo:400,700" rel="stylesheet">
 
 <body>
-	
-	<h1 id="timeline-title">Life Timeline</h1>
+	<div id="page-wrapper">
+		<h1 id="timeline-title">Life Timeline</h1>
 
-	<?php
-	if (empty($_POST['dob'])):
-		require '../pages/dob_form.php';
-	else:
-		require '../pages/timeline_results.php';
-	endif;
-	?>
+		<?php
+		if (empty($_POST['dob'])):
+			require '../pages/dob_form.php';
+		else:
+			require '../pages/timeline_results.php';
+		endif;
+		?>
+	</div>
+
+	<script src="main.js"></script>
 </body>

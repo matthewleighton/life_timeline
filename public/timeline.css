@@ -39,9 +39,23 @@ body {
 }
 
 .category-toggle {
-	margin: 0 auto;
+	margin: 0.5em 0.1em;
 	cursor: pointer;
 	transition: filter 0.5s ease-out;
+	width: 5.5em;
+	height: 5.5em;
+	padding: 1em;
+	text-align: center;
+}
+
+.category-button-label {
+	font-weight: bold;
+	text-align: center;
+}
+
+.category-button-image {
+	position: relative;
+	top: -0.5em;
 }
 
 

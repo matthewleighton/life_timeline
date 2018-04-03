@@ -6,13 +6,13 @@ $events = Timeline_Helper::getEventsFromDB();
 $events = Timeline_Helper::addUserSpecificDataToEvents($events, $userDOB);
 
 $categories = array(
-	'death',
 	'books',
 	'film',
 	'music',
 	'sport',
+	'science',
 	'history',
-	'science'
+	'death'
 );
 ?>
 
@@ -27,8 +27,10 @@ $categories = array(
 		>
 			<img 
 			src="assets/images/<?php echo $category; ?>.svg"
+			class="category-button-image"
 			/>
-			<?php echo ucfirst($category); ?></button>
+			<span class="category-button-label"><?php echo ucfirst($category); ?></span>
+		</button>
 		<?php
 	endforeach;	
 	?>

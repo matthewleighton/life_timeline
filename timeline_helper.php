@@ -30,6 +30,16 @@ class Timeline_Helper {
 			// Add age at date.
 			$age = $eventDate->diffInYears($userDOB);
 			$events[$id]['age'] = $age;
+
+			// Add event period (future/past)
+			$today = new Carbon('today');
+			$events[$id]['period'] = $today->gt($eventDate) ? 'past' : 'future';
+
+			/*if ($today->gt($eventDate)):
+				$events[$id]['period'] = 'past';
+			else:
+				$events[$id]['period'] = 'future';
+			endif;*/
 		endforeach;
 
 		return $events;

@@ -79,6 +79,14 @@ body {
 	visibility: visible;
 }
 
+.past {
+	color: #F5A65B;
+}
+
+.future {
+	color: #56C965;
+}
+
 .event-header {
 	margin-bottom: 5px;
 	font-size: 1em;

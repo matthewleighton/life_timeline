@@ -42,7 +42,7 @@ $categories = array(
 	foreach ($events as $days => $event):
 		//echo "<pre>";print_r($event);die;
 		?>
-		<div class="timeline-event <?php echo $event['category']; ?>">
+		<div class="timeline-event <?php echo $event['category'] . " " . $event['period'] ?>">
 			<p class="event-header">
 				<span class="event-date"><?php echo $event['date']; ?></span>: 
 				<span class="event-title"><?php echo $event['title']; ?></span>

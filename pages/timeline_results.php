@@ -20,7 +20,12 @@ $categories = array(
 	<?php
 	foreach ($categories as $category):
 		?>
-		<span class="category-toggle toggle-on"><?php echo ucfirst($category); ?></span>
+		<button 
+			class="category-toggle toggle-on"
+			onclick="toggleCategoryDisplay(this)"
+			value="1"
+		>
+			<?php echo ucfirst($category); ?></button>
 		<?php
 	endforeach;	
 	?>

@@ -22,9 +22,13 @@ $categories = array(
 		?>
 		<button 
 			class="category-toggle toggle-on"
-			onclick="toggleCategoryDisplay(this)"
+			onclick="toggleCategoryDisplay('<?php echo $category; ?>')"
 			value="1"
+			data="<?php echo $category; ?>"
 		>
+			<img 
+			src="assets/images/<?php echo $category; ?>.svg"
+			/>
 			<?php echo ucfirst($category); ?></button>
 		<?php
 	endforeach;	

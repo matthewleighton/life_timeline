@@ -1,4 +1,5 @@
 var originalEventCSS = getOriginalEventCSS();
+var categoryToggleStatus = {};
 
 // Used to return the CSS to default when categories are toggled back to active.
 function getOriginalEventCSS() {
@@ -13,14 +14,13 @@ function getOriginalEventCSS() {
 	}
 }
 
-function toggleCategoryDisplay(toggleButton) {
-	var category = toggleButton.innerHTML.toLowerCase();
+function toggleCategoryDisplay(category) {
 	var eventsInCategory = document.getElementsByClassName(category);
-	var initialToggleValue = toggleButton.value;
+	var initialToggleValue = categoryToggleStatus[category];
 
-	if (initialToggleValue == '0') {
+	if (initialToggleValue === false) {
 		/* Showing events */
-		toggleButton.value = '1';
+		categoryToggleStatus[category] = true;
 
 		var newEventOpacityValue = originalEventCSS.opacity;
 		var newEventHeightValue = originalEventCSS.height;
@@ -30,7 +30,7 @@ function toggleCategoryDisplay(toggleButton) {
 
 	} else {
 		/* Hiding events */
-		toggleButton.value = '0';
+		categoryToggleStatus[category] = false;
 		
 		var newEventOpacityValue = '0';
 		var newEventHeightValue = '0';

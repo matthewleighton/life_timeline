@@ -21,10 +21,9 @@ $categories = array(
 	foreach ($categories as $category):
 		?>
 		<button 
-			class="category-toggle toggle-on"
+			class="category-toggle"
+			id="<?php echo $category; ?>-toggle-btn"
 			onclick="toggleCategoryDisplay('<?php echo $category; ?>')"
-			value="1"
-			data="<?php echo $category; ?>"
 		>
 			<img 
 			src="assets/images/<?php echo $category; ?>.svg"

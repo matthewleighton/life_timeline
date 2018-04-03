@@ -17,6 +17,7 @@ function getOriginalEventCSS() {
 function toggleCategoryDisplay(category) {
 	var eventsInCategory = document.getElementsByClassName(category);
 	var initialToggleValue = categoryToggleStatus[category];
+	var toggleButton = document.getElementById(category + "-toggle-btn");
 
 	if (initialToggleValue === false) {
 		/* Showing events */
@@ -27,6 +28,7 @@ function toggleCategoryDisplay(category) {
 		var newEventMarginValue = originalEventCSS.margin;
 		var newEventVisibility = originalEventCSS.visibility;
 
+		toggleButton.style.filter = "";
 
 	} else {
 		/* Hiding events */
@@ -36,6 +38,8 @@ function toggleCategoryDisplay(category) {
 		var newEventHeightValue = '0';
 		var newEventMarginValue = '-20';
 		var newEventVisibility = 'hidden';
+
+		toggleButton.style.filter = "grayscale(100%)";
 	}
 
 	for (var i = 0; i < eventsInCategory.length; i++) {

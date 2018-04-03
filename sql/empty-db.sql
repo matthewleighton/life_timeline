@@ -31,7 +31,7 @@ CREATE TABLE `events` (
   `title` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `days` int(11) NOT NULL,
   `who` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `type` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `category` varchar(40) COLLATE utf8mb4_unicode_ci NOT NULL,
   `description` text COLLATE utf8mb4_unicode_ci NOT NULL,
   `image` text COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;

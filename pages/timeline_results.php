@@ -5,7 +5,7 @@ $userDOB = $_POST['dob'];
 $events = Timeline_Helper::getEventsFromDB();
 $events = Timeline_Helper::addUserSpecificDataToEvents($events, $userDOB);
 
-$types = array(
+$categories = array(
 	'death',
 	'books',
 	'film',
@@ -18,9 +18,9 @@ $types = array(
 
 <div id="options-wrapper">
 	<?php
-	foreach ($types as $type):
+	foreach ($categories as $category):
 		?>
-		<span class="type-toggle toggle-on"><?php echo ucfirst($type); ?></span>
+		<span class="category-toggle toggle-on"><?php echo ucfirst($category); ?></span>
 		<?php
 	endforeach;	
 	?>
@@ -32,7 +32,7 @@ $types = array(
 	foreach ($events as $days => $event):
 		//echo "<pre>";print_r($event);die;
 		?>
-		<div class="timeline-event <?php echo $event['type']; ?>">
+		<div class="timeline-event <?php echo $event['category']; ?>">
 			<p class="event-header">
 				<span class="event-date"><?php echo $event['date']; ?></span>: 
 				<span class="event-title"><?php echo $event['title']; ?></span>

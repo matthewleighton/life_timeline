@@ -11,18 +11,30 @@ body {
 
 
 /* DOB Entry Page */
-#dob_form {
+#dob-form {
 	text-align: center;
 }
 
-.dob_instruction {
+.dob-instruction {
 	font-size: 1.2em;
 	letter-spacing: 0.03em;
 	margin: 15px;
 }
 
-#dob_input {
+#dob-input {
 	margin: 10px;
+}
+
+#dob-submit-button {
+	height: 1.8em;
+	position: relative;
+	top: 0.3em;
+	left: -0.7em;
+}
+
+#dob-submit-image {
+	/*height: 1.5em;*/
+	height: 100%;
 }
 
 #dob_submit {

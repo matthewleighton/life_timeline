@@ -7,7 +7,7 @@
 		<h1 id="timeline-title">Life Timeline</h1>
 
 		<?php
-		if (empty($_POST['dob'])):
+		if (empty($_GET['dob'])):
 			require '../pages/dob_form.php';
 		else:
 			require '../pages/timeline_results.php';

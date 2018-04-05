@@ -1,7 +1,7 @@
 <?php
 require '../timeline_helper.php';
 
-$userDOB = $_POST['dob'];
+$userDOB = $_GET['dob'];
 $events = Timeline_Helper::getEventsFromDB();
 $events = Timeline_Helper::addUserSpecificDataToEvents($events, $userDOB);
 

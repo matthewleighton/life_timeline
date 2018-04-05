@@ -16,8 +16,14 @@ class Timeline_Helper {
 		return $query->fetchAll();
 	}
 
+	// Replace slashes with dashes in submitted DOB
+	public static function formatDOB($DOB) {
+		return str_replace('/', '-', $DOB);
+	}
+
 	public static function addUserSpecificDataToEvents($events, $userDOB) {
 
+		$userDOB = self::formatDOB($userDOB);
 		$userDOB = new Carbon($userDOB);
 
 		foreach ($events as $id => $event):

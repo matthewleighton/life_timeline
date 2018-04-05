@@ -5,17 +5,23 @@ use Carbon\Carbon;
 
 class Timeline_Helper {
 
-	public static function getEventsFromDB() {
-		require 'db_config.php';
+	// Return FALSE if there is a problem with the given DOB.
+	public static function validateDOB(&$DOB) {
+		if (!isset($_GET['dob'])):
+			// Return true if DOB is empty. We're only checking for invalid DOB. Not absent DOB.
+			return true;
+		endif;
 
-		$conn = new PDO("mysql:host=" . $host . ";dbname=" . $db, $user, $pass);
-		$sql = "SELECT * FROM events ORDER BY days ASC";
-		$query = $conn->prepare($sql);
-		$query->execute();
+		$DOB = self::fixDOB($DOB);
 
-		return $query->fetchAll();
+		try {
+			$userDOB = new Carbon($DOB);
+		} catch(Exception $e) {
+			return false; // Validation error!
+		}
+
+		return true; // No errors. All is good.
 	}
-
 
 	// Attempt to fix DOBs given in a format which Carbon does not like.
 	public static function fixDOB($dob) {
@@ -31,18 +37,19 @@ class Timeline_Helper {
 		return $dob;
 	}
 
-	public static function addUserSpecificDataToEvents($events, $userDOB) {
-		$userDOB = self::FixDOB($userDOB);
-		
-		try {
-			$userDOB = new Carbon($userDOB);
-		} catch(Exception $e) {
-			// Redirect to the front page if the DOB cannot be understood.
-			$siteUrl = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '?dob_error=1';
+	public static function getEventsFromDB() {
+		require 'db_config.php';
 
-			header('Location: ' . $siteUrl);
-			die;
-		}
+		$conn = new PDO("mysql:host=" . $host . ";dbname=" . $db, $user, $pass);
+		$sql = "SELECT * FROM events ORDER BY days ASC";
+		$query = $conn->prepare($sql);
+		$query->execute();
+
+		return $query->fetchAll();
+	}
+
+	public static function addUserSpecificDataToEvents($events, $userDOB) {
+		$userDOB = new Carbon($userDOB);
 
 		self::addLifespanAnniversaries($userDOB, $events);
 
@@ -60,7 +67,6 @@ class Timeline_Helper {
 			// Add event period (future/past)
 			$events[$id]['period'] = $today->gt($eventDate) ? 'past' : 'future';
 		endforeach;
-
 
 		return self::sortEventsByDays($events);
 	}
@@ -102,7 +108,7 @@ class Timeline_Helper {
 		endforeach;
 	}
 
-	public static function getDateNumDaysAfterDOB($DOB, $days) {
+	public static function getDateFromNumberOfDaysAfterDob($DOB, $days) {
 		$DOB = new Carbon($DOB);
 
 		return $DOB->addDays($days)->format('jS \o\f F, Y');

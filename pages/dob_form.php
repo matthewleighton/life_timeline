@@ -14,7 +14,7 @@
 	</form>
 
 	<?php
-	if (isset($_GET['dob_error']) && $_GET['dob_error']):
+	if (!$validDOB):
 		?>
 		<p class="dob-error">
 			The date of birth could not be understood.

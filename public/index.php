@@ -1,3 +1,8 @@
+<?php
+require '../timeline_helper.php';
+$validDOB = Timeline_Helper::validateDOB($_GET['dob']);
+?>
+
 <head>
 	<title>Life Timeline</title>
 	<link rel="stylesheet" type="text/css" href="reset.css">
@@ -12,7 +17,7 @@
 		<h1 id="timeline-title">Life Timeline</h1>
 
 		<?php
-		if (empty($_GET['dob'])):
+		if (empty($_GET['dob']) || !$validDOB):
 			require '../pages/dob_form.php';
 		else:
 			require '../pages/timeline_results.php';

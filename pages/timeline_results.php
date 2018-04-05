@@ -1,5 +1,4 @@
 <?php
-require '../timeline_helper.php';
 
 $userDOB = $_GET['dob'];
 $events = Timeline_Helper::getEventsFromDB();
@@ -37,7 +36,7 @@ $categories = array(
 </div>
 
 <?php
-$bannisterDate = Timeline_Helper::getDateNumDaysAfterDOB($userDOB, 9175);
+$bannisterDate = Timeline_Helper::getDateFromNumberOfDaysAfterDob($userDOB, 9175);
 ?>
 
 <div id="timeline-explained">

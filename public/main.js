@@ -60,7 +60,7 @@ function toggleExplainer() {
 	explainerArrowRotation += 180;
 	
 	if (explainerStatus == 0) {
-		explainerBody.style.maxHeight = '10em';
+		explainerBody.style.maxHeight = '100%';
 		explainerArrow.style.transform = 'rotate(' + explainerArrowRotation +  'deg)';
 		explainerStatus = 1;
 	} else {

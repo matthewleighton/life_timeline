@@ -45,8 +45,13 @@ body {
 	text-shadow: none;
 }
 
+.dob-error {
+	color: #F98948;
+	font-size: 0.95em;
+}
+
 #timeline-explained {
-	
+
 }
 
 /* Timeline Options */

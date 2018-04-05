@@ -16,12 +16,15 @@ class Timeline_Helper {
 		return $query->fetchAll();
 	}
 
-	// Replace slashes with dashes in submitted DOB
-	public static function formatDOB($dob) {
-		$dob = str_replace('/', '-', $dob);
-		$dobParts = split('-', $dob);
 
-		if ($dobParts[1] > 12):
+	// Attempt to fix DOBs given in a format which Carbon does not like.
+	public static function fixDOB($dob) {
+		// Replace slashes with dashes.
+		$dob = str_replace('/', '-', $dob);
+		
+		// Convert American format (MM/DD/YYYY) to English format (DD/MM/YYYY).
+		$dobParts = split('-', $dob);
+		if (count($dobParts) == 3 && $dobParts[1] > 12):
 			$dob = $dobParts[1] . '-' . $dobParts[0] . '-' . $dobParts[2];
 		endif;
 
@@ -30,8 +33,17 @@ class Timeline_Helper {
 
 	public static function addUserSpecificDataToEvents($events, $userDOB) {
 
-		$userDOB = self::formatDOB($userDOB);
-		$userDOB = new Carbon($userDOB);
+		$userDOB = self::FixDOB($userDOB);
+		
+		try {
+			$userDOB = new Carbon($userDOB);
+		} catch(Exception $e) {
+			// Redirect to the front page if the DOB cannot be understood.
+			$siteUrl = (isset($_SERVER['HTTPS']) ? 'https' : 'http') . '://' . $_SERVER['HTTP_HOST'] . '?dob_error=1';
+
+			header('Location: ' . $siteUrl);
+			die;
+		}
 
 		foreach ($events as $id => $event):
 			$userDOB = new Carbon($userDOB);
@@ -47,12 +59,6 @@ class Timeline_Helper {
 			// Add event period (future/past)
 			$today = new Carbon('today');
 			$events[$id]['period'] = $today->gt($eventDate) ? 'past' : 'future';
-
-			/*if ($today->gt($eventDate)):
-				$events[$id]['period'] = 'past';
-			else:
-				$events[$id]['period'] = 'future';
-			endif;*/
 		endforeach;
 
 		return $events;

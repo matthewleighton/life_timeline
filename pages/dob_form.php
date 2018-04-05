@@ -7,9 +7,21 @@
 	<p class="dob-instruction">Enter your date of birth</p>
 
 	<form>
-		<input type="date" name="dob" value="1993-04-17" id="dob-input">
+		<input type="date" name="dob" id="dob-input">
 		<button type="submit" id="dob-submit-button">
 			<img src="assets/images/right-arrow.svg" id="dob-submit-image"/>
 		</button>
 	</form>
+
+	<?php
+	if (isset($_GET['dob_error']) && $_GET['dob_error']):
+		?>
+		<p class="dob-error">
+			The date of birth could not be understood.
+			</br>
+			Try entering a date in the format "DD/MM/YYY".
+		</p>
+		<?php
+	endif;
+	?>
 </div>

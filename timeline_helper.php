@@ -45,9 +45,18 @@ class Timeline_Helper {
 			die;
 		}
 
-		foreach ($events as $id => $event):
-			$userDOB = new Carbon($userDOB);
-			
+		$today = new Carbon('today');
+		$userDOB = new Carbon($userDOB);
+
+		// Add date of double current age.
+		$events[] = array(
+			'title' => 'Your life so far, lived again.',
+			'days' => $today->diffInDays($userDOB) * 2,
+			'who' => 'You',
+			'category' => 'self-event'
+		);
+
+		foreach ($events as $id => $event):			
 			// Add event date.
 			$eventDate = $userDOB->copy()->addDays($event['days']);
 			$events[$id]['date'] = $eventDate->format('jS \o\f F, Y');
@@ -57,9 +66,18 @@ class Timeline_Helper {
 			$events[$id]['age'] = $age;
 
 			// Add event period (future/past)
-			$today = new Carbon('today');
 			$events[$id]['period'] = $today->gt($eventDate) ? 'past' : 'future';
 		endforeach;
+
+
+		return self::sortEventsByDays($events);
+	}
+
+	// Order the given events by days, least to most.
+	public static function sortEventsByDays($events) {
+		usort($events, function($a, $b) {
+			return $a['days'] - $b['days'];
+		});
 
 		return $events;
 	}

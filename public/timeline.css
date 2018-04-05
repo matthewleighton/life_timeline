@@ -51,7 +51,28 @@ body {
 }
 
 #timeline-explained {
+	font-size: 0.9em;
+	text-align: center;
+}
 
+#expand-explainer {
+	cursor: pointer;
+}
+
+#explainer-body {
+	max-height: 0;
+	margin: 1em auto;
+	/*padding: 0.1em;*/
+	padding: 0;
+	max-width: 50%;
+	text-align: justify;
+	overflow: hidden;
+	transition: max-height 0.5s ease-in-out;
+}
+
+#explainer-arrow {
+	display: inline-block;
+	transition: transform 0.5s ease-out;
 }
 
 /* Timeline Options */

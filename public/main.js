@@ -1,5 +1,7 @@
 var originalEventCSS = getOriginalEventCSS();
 var categoryToggleStatus = {};
+var explainerStatus = 0;
+var explainerArrowRotation = 0;
 
 // Used to return the CSS to default when categories are toggled back to active.
 function getOriginalEventCSS() {
@@ -48,5 +50,22 @@ function toggleCategoryDisplay(category) {
 		event.style.maxHeight = newEventHeightValue;
 		event.style.marginBottom = newEventMarginValue;
 		event.style.visibility = newEventVisibility;
+	}
+}
+
+function toggleExplainer() {
+	var explainerBody = document.getElementById('explainer-body');
+	var explainerArrow = document.getElementById('explainer-arrow');
+
+	explainerArrowRotation += 180;
+	
+	if (explainerStatus == 0) {
+		explainerBody.style.maxHeight = '10em';
+		explainerArrow.style.transform = 'rotate(' + explainerArrowRotation +  'deg)';
+		explainerStatus = 1;
+	} else {
+		explainerBody.style.maxHeight = '0';
+		explainerArrow.style.transform = 'rotate(' + explainerArrowRotation +  'deg)';
+		explainerStatus = 0;
 	}
 }

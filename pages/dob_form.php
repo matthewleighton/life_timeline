@@ -1,6 +1,6 @@
 <div id="dob-form">
 	
-	<p id="timeline-explained">
+	<p>
 		Overlay events in others' lives over the timeline of your own life.
 	</p>
 

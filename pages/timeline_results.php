@@ -36,11 +36,19 @@ $categories = array(
 	?>
 </div>
 
+<?php
+$bannisterDate = Timeline_Helper::getDateNumDaysAfterDOB($userDOB, 9175);
+?>
+
+<div id="timeline-explained">
+	<p id="expand-explainer" onclick="toggleExplainer()">Wait, what is this? <span id="explainer-arrow">⮟</span></p>
+	<p id="explainer-body">This site calculates on what date events in others' lives would happen, had they been born on the same day as you.<br/><br/>For example, Roger Bannister ran a four-minute mile on his 9,175th day (a little over 25 years old).<br/><br/>For you to do this at the same age would mean running it on <?php echo $bannisterDate; ?>.</p>
+</div>
+
 <div id="timeline-wrapper">
 
 	<?php
 	foreach ($events as $days => $event):
-		//echo "<pre>";print_r($event);die;
 		?>
 		<div class="timeline-event <?php echo $event['category'] . " " . $event['period'] . " " . $event['category'] ?>">
 			<p class="event-header">

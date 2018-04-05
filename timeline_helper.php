@@ -80,6 +80,9 @@ class Timeline_Helper {
 
 		$today = new Carbon('today');
 
+		// Stop if the given DOB is in the future.
+		if ($userDOB->gt($today)) return;
+
 		$lifeMultiplied = array(
 			2 => 'Your life so far, lived again.',
 			3 => 'Your current lifespan, a third time.',

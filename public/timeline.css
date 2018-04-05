@@ -4,6 +4,10 @@ body {
 	font-family: 'Arimo', sans-serif;
 }
 
+a {
+	color: inherit;
+}
+
 #page-wrapper {
 	margin: 0 auto;
 	width: 50%;
@@ -33,7 +37,6 @@ body {
 }
 
 #dob-submit-image {
-	/*height: 1.5em;*/
 	height: 100%;
 }
 

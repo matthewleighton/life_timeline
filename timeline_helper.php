@@ -17,8 +17,15 @@ class Timeline_Helper {
 	}
 
 	// Replace slashes with dashes in submitted DOB
-	public static function formatDOB($DOB) {
-		return str_replace('/', '-', $DOB);
+	public static function formatDOB($dob) {
+		$dob = str_replace('/', '-', $dob);
+		$dobParts = split('-', $dob);
+
+		if ($dobParts[1] > 12):
+			$dob = $dobParts[1] . '-' . $dobParts[0] . '-' . $dobParts[2];
+		endif;
+
+		return $dob;
 	}
 
 	public static function addUserSpecificDataToEvents($events, $userDOB) {

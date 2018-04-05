@@ -1,0 +1,3 @@
+ErrorDocument 403 /images/403.php
+RewriteEngine on
+RewriteRule ^403.php$ /index.php [R=301]

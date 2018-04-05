@@ -45,16 +45,9 @@ class Timeline_Helper {
 			die;
 		}
 
-		$today = new Carbon('today');
-		$userDOB = new Carbon($userDOB);
+		self::addLifespanAnniversaries($userDOB, $events);
 
-		// Add date of double current age.
-		$events[] = array(
-			'title' => 'Your life so far, lived again.',
-			'days' => $today->diffInDays($userDOB) * 2,
-			'who' => 'You',
-			'category' => 'self-event'
-		);
+		$today = new Carbon('today');
 
 		foreach ($events as $id => $event):			
 			// Add event date.
@@ -80,6 +73,37 @@ class Timeline_Helper {
 		});
 
 		return $events;
+	}
+
+	// Add events for date of double, tripple, etc, current user lifespan.
+	public static function addLifespanAnniversaries($userDOB, &$eventsArray) {
+
+		$today = new Carbon('today');
+
+		$lifeMultiplied = array(
+			2 => 'Your life so far, lived again.',
+			3 => 'Your current lifespan, a third time.',
+			4 => 'Your life, fourth time around.',
+			5 => 'Five times your current lifespan.'
+		);
+
+		foreach ($lifeMultiplied as $multiplier => $title):
+			$anniversaryDays = $today->diffInDays($userDOB) * $multiplier;
+
+			//var_dump($anniversaryDays);
+
+			if ($anniversaryDays > 125*365) {
+				//die(var_dump($anniversaryDays));
+				break;
+			}
+
+			$eventsArray[] = array(
+				'title' => $title,
+				'days' => $anniversaryDays,
+				'who' => 'You',
+				'category' => 'self-event'
+			);
+		endforeach;
 	}
 
 }

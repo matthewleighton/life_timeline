@@ -52,6 +52,7 @@ class Timeline_Helper {
 		$userDOB = new Carbon($userDOB);
 
 		self::addLifespanAnniversaries($userDOB, $events);
+		self::addCurrentAgeEvent($userDOB, $events);
 
 		$today = new Carbon('today');
 
@@ -111,10 +112,33 @@ class Timeline_Helper {
 		endforeach;
 	}
 
+	// Add an event for the current day.
+	public function addCurrentAgeEvent($userDOB, &$eventsArray) {
+		$today = new Carbon('today');
+		$ageInDays = $today->diffInDays($userDOB);
+
+		$eventsArray[] = array(
+			'title' => 'Today. Your ' . number_format($ageInDays) . self::getNumberSuffix($ageInDays) . ' day on Earth.',
+			'days' => $ageInDays,
+			'who' => 'You',
+			'category' => 'self-event'
+		);
+	}
+
 	public static function getDateFromNumberOfDaysAfterDob($DOB, $days) {
 		$DOB = new Carbon($DOB);
 
 		return $DOB->addDays($days)->format('jS \o\f F, Y');
+	}
+
+	// Return the appropriate suffix (st, nd, rd, etc) to a number.
+	public static function getNumberSuffix($number) {
+		$suffixes = array('th','st','nd','rd','th','th','th','th','th','th');
+		if ((($number % 100) >= 11) && (($number%100) <= 13)):
+			return 'th';
+		else:
+			return $suffixes[$number % 10];
+		endif;
 	}
 
 }

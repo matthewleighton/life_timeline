@@ -141,4 +141,10 @@ class Timeline_Helper {
 		endif;
 	}
 
+	// Returns the current URL, minus everything after the last slash. Designed so I can later move the site without need for code changes.
+	public function getHomeURL() {
+		$url = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
+		return substr($url, 0, strrpos($url, '/'));
+	}
+
 }

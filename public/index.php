@@ -14,7 +14,7 @@ $validDOB = Timeline_Helper::validateDOB($_GET['dob']);
 
 <body>
 	<div id="page-wrapper">
-		<h1 id="timeline-title">Life Timeline</h1>
+		<h1 id="timeline-title"><a href="<?php echo Timeline_Helper::getHomeURL(); ?>">Life Timeline</a></h1>
 
 		<?php
 		if (empty($_GET['dob']) || !$validDOB):

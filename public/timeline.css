@@ -127,6 +127,11 @@ a {
 	font-size: 40px;
 	text-align: center;
 	margin: 40px;
+	text-decoration: none;
+}
+
+#timeline-title a {
+	text-decoration: none;
 }
 
 .timeline-event {

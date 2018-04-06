@@ -47,7 +47,16 @@ $bannisterDate = Timeline_Helper::getDateFromNumberOfDaysAfterDob($userDOB, 9175
 <div id="timeline-wrapper">
 
 	<?php
+	$decade = '';
 	foreach ($events as $days => $event):
+		
+		if ($event['decade'] != $decade):
+			$decade = $event['decade'];
+			?>
+			<p class="decade-marker"><?php echo $decade; ?></p>
+			<?php
+		endif;
+
 		?>
 		<div class="timeline-event <?php echo $event['category'] . " " . $event['period'] . " " . $event['category'] ?>">
 			<p class="event-header">

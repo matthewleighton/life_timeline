@@ -64,9 +64,16 @@ class Timeline_Helper {
 			$age = $eventDate->diffInYears($userDOB);
 			$events[$id]['age'] = $age;
 
-			// Add event period (future/past)
+			// Add event period (future/past).
 			$events[$id]['period'] = $today->gt($eventDate) ? 'past' : 'future';
+
+			// Add event decade. (Take year, and replace last digit with '0s').
+			$events[$id]['decade'] = substr($eventDate->format('Y'), 0, -1) . '0s';
 		endforeach;
+
+		//echo"<pre>";print_r($events);die;
+
+		//$events = self::addDecadeMarkers($events);
 
 		return self::sortEventsByDays($events);
 	}

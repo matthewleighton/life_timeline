@@ -25,5 +25,7 @@ $validDOB = Timeline_Helper::validateDOB($_GET['dob']);
 		?>
 	</div>
 
+	<?php require '../pages/footer.php'; ?>
+
 	<script src="main.js"></script>
 </body>

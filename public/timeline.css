@@ -170,3 +170,25 @@ a {
 .event-sub {
 	font-size: 0.8em;
 }
+
+
+/* Footer */
+#footer {
+	text-align: center;
+	margin: 2em 0;
+}
+
+.github-logo {
+	width: 50px;
+	text-align: center;
+	margin: 0 auto;
+	display: inline-block;
+}
+
+.github-logo svg path {
+	pointer-events: all !important;
+}
+
+.github-logo svg path:hover {
+	fill: #56C965;
+}

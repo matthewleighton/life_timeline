@@ -1,18 +1,21 @@
-var originalEventCSS = getOriginalEventCSS();
+var originalEventCSS = getOriginalCSS('timeline-event');
+var originalDecadeCSS = getOriginalCSS('decade-marker');
 var categoryToggleStatus = {};
 var explainerStatus = 0;
 var explainerArrowRotation = 0;
 
-// Used to return the CSS to default when categories are toggled back to active.
-function getOriginalEventCSS() {
-	var eventElement = document.getElementsByClassName('timeline-event')[0];
-	var eventStyle = window.getComputedStyle(eventElement);
+// Used to return the CSS to default when hidden elements are toggled back to active.
+function getOriginalCSS(className) {
+	var element = document.getElementsByClassName(className)[0];
+	var elementStyle = window.getComputedStyle(element);
 	
 	return {
-		margin: eventStyle.margin,
-		height: eventStyle.height,
-		opacity: eventStyle.opacity,
-		visibility: eventStyle.visibility
+		height: elementStyle.height,
+		marginBottom: elementStyle.marginBottom,
+		margin: elementStyle.margin,
+		maxHeight: elementStyle.maxHeight,
+		opacity: elementStyle.opacity,
+		visibility: elementStyle.visibility
 	}
 }
 
@@ -50,6 +53,40 @@ function toggleCategoryDisplay(category) {
 		event.style.maxHeight = newEventHeightValue;
 		event.style.marginBottom = newEventMarginValue;
 		event.style.visibility = newEventVisibility;
+	}
+
+	toggleDecadeMarkerVisibility();
+}
+
+// Hide a decade marker if all its events have been hidden by the category toggle.
+function toggleDecadeMarkerVisibility() {
+	var decadeMarkers = document.getElementsByClassName('decade-marker');
+
+	// Loop over each decade.
+	for (var i = 0; i < decadeMarkers.length; i++) {
+		
+		var decade = decadeMarkers[i].textContent;
+		var eventsInDecade = document.getElementsByClassName('event-decade-' + decade);
+
+		// Hide the decade if EVERY event within it has been hidden.
+		for (var n = 0; n < eventsInDecade.length; n++) {
+			if (eventsInDecade[n].style.visibility != 'hidden') {
+				/* Show decade marker */
+				decadeMarkers[i].style.visibility = originalDecadeCSS.visibility;
+				decadeMarkers[i].style.marginBottom = originalDecadeCSS.marginBottom;
+				decadeMarkers[i].style.maxHeight = originalDecadeCSS.maxHeight;
+				decadeMarkers[i].style.opacity = originalDecadeCSS.opacity;
+				break;
+			}
+
+			if (n == eventsInDecade.length - 1) {
+				/* Hide decade marker */
+				decadeMarkers[i].style.visibility = 'hidden';
+				decadeMarkers[i].style.marginBottom = '-20px';
+				decadeMarkers[i].style.maxHeight = '0';
+				decadeMarkers[i].style.opacity = '0';
+			}
+		}
 	}
 }
 

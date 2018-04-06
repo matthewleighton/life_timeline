@@ -71,10 +71,6 @@ class Timeline_Helper {
 			$events[$id]['decade'] = substr($eventDate->format('Y'), 0, -1) . '0s';
 		endforeach;
 
-		//echo"<pre>";print_r($events);die;
-
-		//$events = self::addDecadeMarkers($events);
-
 		return self::sortEventsByDays($events);
 	}
 

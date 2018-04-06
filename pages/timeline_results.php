@@ -58,7 +58,7 @@ $bannisterDate = Timeline_Helper::getDateFromNumberOfDaysAfterDob($userDOB, 9175
 		endif;
 
 		?>
-		<div class="timeline-event <?php echo $event['category'] . " " . $event['period'] . " " . $event['category'] ?>">
+		<div class="timeline-event event-decade-<?php echo $event['decade']; ?> <?php echo $event['category'] . " " . $event['period'] . " " . $event['category'] ?>">
 			<p class="event-header">
 				<span class="event-date"><?php echo $event['date']; ?></span>: 
 				<span class="event-title"><?php echo $event['title']; ?></span>

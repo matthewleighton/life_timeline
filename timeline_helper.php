@@ -29,7 +29,7 @@ class Timeline_Helper {
 		$dob = str_replace('/', '-', $dob);
 		
 		// Convert American format (MM/DD/YYYY) to English format (DD/MM/YYYY).
-		$dobParts = split('-', $dob);
+		$dobParts = explode('-', $dob);
 		if (count($dobParts) == 3 && $dobParts[1] > 12):
 			$dob = $dobParts[1] . '-' . $dobParts[0] . '-' . $dobParts[2];
 		endif;

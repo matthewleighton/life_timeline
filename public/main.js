@@ -109,8 +109,8 @@ function toggleExplainer() {
 
 function toggleDecade(decadeLabel) {
 	var decadeArrow 		 = decadeLabel.getElementsByTagName('img')[0];
-	var decadeContainer 	 = document.getElementById('decade-' + decade);
 	var decade 				 = decadeLabel.dataset.decade;
+	var decadeContainer 	 = document.getElementById('decade-' + decade);
 	var originalDecadeStatus = decadeArrow.style.transform == 'rotate(180deg)' ? false : true; // True means the decade is visible.
 
 	if (originalDecadeStatus) {

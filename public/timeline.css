@@ -84,7 +84,7 @@ a {
 	}
 }
 
-#explainer-arrow {
+#explainer-arrow img {
 	display: inline-block;
 	transition: transform 0.5s ease-out;
 	position: relative;
@@ -143,12 +143,19 @@ a {
 	visibility: visible;
 }
 
-.decade-marker {
+.decade-label {
+	cursor: pointer;
 	margin-top: 1.2em;
 	transition: opacity 0.5s ease-out, visibility 0.5s ease-out, max-height 0.75s ease-out, margin 0.75s ease-out;
 	opacity: 1;
 	max-height: 1em;
 	visibility: visible;
+}
+
+.decade-label img {
+	display: inline-block;
+	height: 12px;
+	vertical-align: middle;
 }
 
 .past {

@@ -69,10 +69,37 @@ class Timeline_Helper {
 			$events[$id]['period'] = $today->gt($eventDate) ? 'past' : 'future';
 
 			// Add event decade. (Take year, and replace last digit with '0s').
-			$events[$id]['decade'] = substr($eventDate->format('Y'), 0, -1) . '0s';
+			$events[$id]['decade'] = self::getDecadeFromDate($eventDate);
 		endforeach;
 
 		return self::sortEventsByDays($events);
+	}
+
+	public static function sortEventsByDecade($originalEventsArray) {
+		$sortedEventsArray = array();
+		$currentDecade = ''; # The decade currently being filled.
+
+		foreach ($originalEventsArray as $event):
+			if ($event['decade'] != $currentDecade):
+				$currentDecade = $event['decade'];
+
+				$sortedEventsArray[$currentDecade] = array();
+			endif;
+
+			$sortedEventsArray[$event['decade']][] = $event;
+		endforeach;
+
+		//echo"<pre>";print_r($sortedEventsArray);die;
+		return $sortedEventsArray;
+	}
+
+	// E.g. returns '2030s' from 2034.
+	public static function getDecadeFromDate($date) {
+		if (is_string($date)):
+			$date = new Carbon($date);
+		endif;
+
+		return substr($date->format('Y'), 0, -1) . '0s';
 	}
 
 	// Order the given events by days, least to most.

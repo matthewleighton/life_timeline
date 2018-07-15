@@ -3,6 +3,10 @@
 $userDOB = $_GET['dob'];
 $events = Timeline_Helper::getEventsFromDB();
 $events = Timeline_Helper::addUserSpecificDataToEvents($events, $userDOB);
+$eventsByDecade = Timeline_Helper::sortEventsByDecade($events);
+
+
+$birthDecade = Timeline_Helper::getDecadeFromDate($userDOB);
 
 $categories = array(
 	'books',
@@ -36,40 +40,47 @@ $categories = array(
 </div>
 
 <?php
-$bannisterDate = Timeline_Helper::getDateFromNumberOfDaysAfterDob($userDOB, 9175);
+$bannisterDate = Timeline_Helper::getDateFromNumberOfDaysAfterDob($userDOB, 9175); # Bannister was 9175 days old at first mile.
+
+$dropdownArrow = "<img src='assets/images/down-arrow.png' id='explainer-arrow'/>";
+
 ?>
 
 <div id="timeline-explained">
-	<p id="expand-explainer" onclick="toggleExplainer()">Wait, what is this? <img src="assets/images/down-arrow.png" id="explainer-arrow"/></</p>
+	<p id="expand-explainer" onclick="toggleExplainer()">Wait, what is this? <span id="explainer-arrow"><?php echo $dropdownArrow; ?></span></p>
 	<p id="explainer-body">This site calculates on what date events in others' lives would happen, had they been born on the same day as you.<br/><br/>For example, Roger Bannister ran a four-minute mile on his 9,175th day (a little over 25 years old).<br/><br/>For you to do this at the same age would mean running it on <?php echo $bannisterDate; ?>.</p>
 </div>
 
 <div id="timeline-wrapper">
-
 	<?php
-	$decade = '';
-	foreach ($events as $days => $event):
-		
-		if ($event['decade'] != $decade):
-			$decade = $event['decade'];
-			?>
-			<p class="decade-marker"><?php echo $decade; ?></p>
-			<?php
-		endif;
-
+	foreach ($eventsByDecade as $decade => $events):
 		?>
-		<div class="timeline-event event-decade-<?php echo $event['decade']; ?> <?php echo $event['category'] . " " . $event['period'] . " " . $event['category'] ?>">
-			<p class="event-header">
-				<span class="event-date"><?php echo $event['date']; ?></span>: 
-				<span class="event-title"><?php echo $event['title']; ?></span>
-			</p>
-			<p class="event-sub">
-				<span class="event-who"><?php echo $event['who']; ?></span>
-				<span class="event-sub">(aged <?php echo $event['age']; ?>)</span>
-			</p>
+		
+		<p class="decade-label" onclick="toggleDecade(this)" data-decade="<?php echo $decade; ?>">
+			<?php echo $decade; ?> 
+			<?php echo $dropdownArrow; ?>
+		</p>
+
+		<div class="decade-container" id="decade-<?php echo $decade; ?>">
+			<?php
+
+			foreach ($events as $event):
+				?>
+				<div class="timeline-event event-decade-<?php echo $event['decade']; ?> <?php echo $event['category'] . " " . $event['period'] . " " . $event['category'] ?>">
+					<p class="event-header">
+						<span class="event-date"><?php echo $event['date']; ?></span>: 
+						<span class="event-title"><?php echo $event['title']; ?></span>
+					</p>
+					<p class="event-sub">
+						<span class="event-who"><?php echo $event['who']; ?></span>
+						<span class="event-sub">(aged <?php echo $event['age']; ?>)</span>
+					</p>
+				</div>
+				<?php
+			endforeach;
+		?>
 		</div>
-	<?php
+		<?php
 	endforeach;
 	?>
-
 </div>

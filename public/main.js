@@ -1,5 +1,5 @@
 var originalEventCSS = getOriginalCSS('timeline-event');
-var originalDecadeCSS = getOriginalCSS('decade-marker');
+var originalDecadeCSS = getOriginalCSS('decade-label');
 var categoryToggleStatus = {};
 var explainerStatus = 0;
 var explainerArrowRotation = 0;
@@ -91,8 +91,8 @@ function toggleDecadeMarkerVisibility() {
 }
 
 function toggleExplainer() {
-	var explainerBody = document.getElementById('explainer-body');
-	var explainerArrow = document.getElementById('explainer-arrow');
+	var explainerBody  = document.getElementById('explainer-body');
+	var explainerArrow = document.getElementById('explainer-arrow').firstChild;
 
 	explainerArrowRotation += 180;
 	
@@ -104,5 +104,20 @@ function toggleExplainer() {
 		explainerBody.style.maxHeight = '0';
 		explainerArrow.style.transform = 'rotate(' + explainerArrowRotation +  'deg)';
 		explainerStatus = 0;
+	}
+}
+
+function toggleDecade(decadeLabel) {
+	var decadeArrow 		 = decadeLabel.getElementsByTagName('img')[0];
+	var decadeContainer 	 = document.getElementById('decade-' + decade);
+	var decade 				 = decadeLabel.dataset.decade;
+	var originalDecadeStatus = decadeArrow.style.transform == 'rotate(180deg)' ? false : true; // True means the decade is visible.
+
+	if (originalDecadeStatus) {
+		decadeContainer.style.display = 'none';
+		decadeArrow.style.transform = 'rotate(180deg)';
+	} else {
+		decadeContainer.style.display = 'block';
+		decadeArrow.style.transform = 'rotate(0deg)';
 	}
 }

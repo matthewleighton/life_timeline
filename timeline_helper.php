@@ -51,7 +51,8 @@ class Timeline_Helper {
 	public static function addUserSpecificDataToEvents($events, $userDOB) {
 		$userDOB = new Carbon($userDOB);
 
-		self::addLifespanAnniversaries($userDOB, $events);
+		self::AddRepeatedLifespanDurationEvents($userDOB, $events);
+		self::addDayIncrementEvents($userDOB, $events);
 		self::addCurrentAgeEvent($userDOB, $events);
 
 		$today = new Carbon('today');
@@ -75,6 +76,63 @@ class Timeline_Helper {
 		return self::sortEventsByDays($events);
 	}
 
+	// Add events for date of double, tripple, etc, current user lifespan.
+	public static function AddRepeatedLifespanDurationEvents($userDOB, &$eventsArray) {
+		$today = new Carbon('today');
+
+		// Stop if the given DOB is in the future.
+		if ($userDOB->gt($today)) return;
+
+		$lifeMultiplied = array(
+			2 => 'Your life so far, lived again.',
+			3 => 'Your current lifespan, a third time.',
+			4 => 'Your life, fourth time around.',
+			5 => 'Five times your current lifespan.'
+		);
+
+		foreach ($lifeMultiplied as $multiplier => $title):
+			$anniversaryDays = $today->diffInDays($userDOB) * $multiplier;
+
+			if ($anniversaryDays > 125*365) break;
+
+			$eventsArray[] = array(
+				'title'    => $title,
+				'days' 	   => $anniversaryDays,
+				'who' 	   => 'You',
+				'category' => 'self-event'
+			);
+		endforeach;
+	}
+
+	// Add events for "Live n days". Defaults to every 5000.
+	public static function addDayIncrementEvents($userDOB, &$eventsArray, $timeIncrement = 5000) {
+		$dayCount = 0;
+
+		while ($dayCount <= 43800): // 43800 days is 120 years.
+			$dayCount += $timeIncrement;
+
+			$eventsArray[] = array(
+				'title'    => 'Live ' . number_format($dayCount) . ' days',
+				'days' 	   => $dayCount,
+				'who' 	   => 'You',
+				'category' => 'self-event'
+			);
+		endwhile;
+	}
+
+	// Add an event for the current day.
+	public function addCurrentAgeEvent($userDOB, &$eventsArray) {
+		$today = new Carbon('today');
+		$ageInDays = $today->diffInDays($userDOB);
+
+		$eventsArray[] = array(
+			'title'    => 'Today. Your ' . number_format($ageInDays) . self::getNumberSuffix($ageInDays) . ' day on Earth.',
+			'days' 	   => $ageInDays,
+			'who' 	   => 'You',
+			'category' => 'self-event'
+		);
+	}
+
 	public static function sortEventsByDecade($originalEventsArray) {
 		$sortedEventsArray = array();
 		$currentDecade = ''; # The decade currently being filled.
@@ -89,7 +147,6 @@ class Timeline_Helper {
 			$sortedEventsArray[$event['decade']][] = $event;
 		endforeach;
 
-		//echo"<pre>";print_r($sortedEventsArray);die;
 		return $sortedEventsArray;
 	}
 
@@ -109,47 +166,6 @@ class Timeline_Helper {
 		});
 
 		return $events;
-	}
-
-	// Add events for date of double, tripple, etc, current user lifespan.
-	public static function addLifespanAnniversaries($userDOB, &$eventsArray) {
-		$today = new Carbon('today');
-
-		// Stop if the given DOB is in the future.
-		if ($userDOB->gt($today)) return;
-
-		$lifeMultiplied = array(
-			2 => 'Your life so far, lived again.',
-			3 => 'Your current lifespan, a third time.',
-			4 => 'Your life, fourth time around.',
-			5 => 'Five times your current lifespan.'
-		);
-
-		foreach ($lifeMultiplied as $multiplier => $title):
-			$anniversaryDays = $today->diffInDays($userDOB) * $multiplier;
-
-			if ($anniversaryDays > 125*365) break;
-
-			$eventsArray[] = array(
-				'title' => $title,
-				'days' => $anniversaryDays,
-				'who' => 'You',
-				'category' => 'self-event'
-			);
-		endforeach;
-	}
-
-	// Add an event for the current day.
-	public function addCurrentAgeEvent($userDOB, &$eventsArray) {
-		$today = new Carbon('today');
-		$ageInDays = $today->diffInDays($userDOB);
-
-		$eventsArray[] = array(
-			'title' => 'Today. Your ' . number_format($ageInDays) . self::getNumberSuffix($ageInDays) . ' day on Earth.',
-			'days' => $ageInDays,
-			'who' => 'You',
-			'category' => 'self-event'
-		);
 	}
 
 	public static function getDateFromNumberOfDaysAfterDob($DOB, $days) {

@@ -16,7 +16,7 @@ function getOriginalCSS(className) {
 		maxHeight: elementStyle.maxHeight,
 		opacity: elementStyle.opacity,
 		visibility: elementStyle.visibility
-	}
+	};
 }
 
 function toggleCategoryDisplay(category) {
@@ -24,14 +24,20 @@ function toggleCategoryDisplay(category) {
 	var initialToggleValue = categoryToggleStatus[category];
 	var toggleButton = document.getElementById(category + "-toggle-btn");
 
+	var newEventOpacityValue,
+		newEventHeightValue, 
+		newEventMarginValue,
+		newEventVisibility;
+
+
 	if (initialToggleValue === false) {
 		/* Showing events */
 		categoryToggleStatus[category] = true;
 
-		var newEventOpacityValue = originalEventCSS.opacity;
-		var newEventHeightValue = originalEventCSS.height;
-		var newEventMarginValue = originalEventCSS.margin;
-		var newEventVisibility = originalEventCSS.visibility;
+		newEventOpacityValue = originalEventCSS.opacity;
+		newEventHeightValue = originalEventCSS.height;
+		newEventMarginValue = originalEventCSS.margin;
+		newEventVisibility = originalEventCSS.visibility;
 
 		toggleButton.style.filter = "";
 
@@ -39,10 +45,10 @@ function toggleCategoryDisplay(category) {
 		/* Hiding events */
 		categoryToggleStatus[category] = false;
 		
-		var newEventOpacityValue = '0';
-		var newEventHeightValue = '0';
-		var newEventMarginValue = '-20';
-		var newEventVisibility = 'hidden';
+		newEventOpacityValue = '0';
+		newEventHeightValue = '0';
+		newEventMarginValue = '-20';
+		newEventVisibility = 'hidden';
 
 		toggleButton.style.filter = "grayscale(100%)";
 	}

@@ -94,9 +94,14 @@ a {
 /* Timeline Options */
 #options-wrapper {
 	text-align: center;
+	position: fixed;
+	top: 20%;
+	left: 13%;
+	max-width: 75px;
 }
 
 .category-toggle {
+	display: block;
 	margin: 0.5em 0.1em;
 	cursor: pointer;
 	transition: filter 0.5s ease-out;
@@ -120,6 +125,7 @@ a {
 
 
 #timeline-wrapper {
+	display: inline-block;
 	margin: 0 auto;
 }
 

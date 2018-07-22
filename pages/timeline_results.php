@@ -17,7 +17,16 @@ $categories = array(
 	'history',
 	'death'
 );
+
+$bannisterDate = Timeline_Helper::getDateFromNumberOfDaysAfterDob($userDOB, 9175); # Bannister was 9175 days old at first mile.
+
+$dropdownArrow = "<img src='assets/images/down-arrow.png' id='explainer-arrow'/>";
 ?>
+
+<div id="timeline-explained">
+	<p id="expand-explainer" onclick="toggleExplainer()">Wait, what is this? <span id="explainer-arrow"><?php echo $dropdownArrow; ?></span></p>
+	<p id="explainer-body">This site calculates on what date events in others' lives would happen, had they been born on the same day as you.<br/><br/>For example, Roger Bannister ran a four-minute mile on his 9,175th day (a little over 25 years old).<br/><br/>For you to do this at the same age would mean running it on <?php echo $bannisterDate; ?>.</p>
+</div>
 
 <div id="options-wrapper">
 	<?php
@@ -37,18 +46,6 @@ $categories = array(
 		<?php
 	endforeach;	
 	?>
-</div>
-
-<?php
-$bannisterDate = Timeline_Helper::getDateFromNumberOfDaysAfterDob($userDOB, 9175); # Bannister was 9175 days old at first mile.
-
-$dropdownArrow = "<img src='assets/images/down-arrow.png' id='explainer-arrow'/>";
-
-?>
-
-<div id="timeline-explained">
-	<p id="expand-explainer" onclick="toggleExplainer()">Wait, what is this? <span id="explainer-arrow"><?php echo $dropdownArrow; ?></span></p>
-	<p id="explainer-body">This site calculates on what date events in others' lives would happen, had they been born on the same day as you.<br/><br/>For example, Roger Bannister ran a four-minute mile on his 9,175th day (a little over 25 years old).<br/><br/>For you to do this at the same age would mean running it on <?php echo $bannisterDate; ?>.</p>
 </div>
 
 <div id="timeline-wrapper">

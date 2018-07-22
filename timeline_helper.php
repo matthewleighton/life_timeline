@@ -99,7 +99,7 @@ class Timeline_Helper {
 				'title'    => $title,
 				'days' 	   => $anniversaryDays,
 				'who' 	   => 'You',
-				'category' => 'self-event'
+				'category' => 'milestones'
 			);
 		endforeach;
 	}
@@ -115,7 +115,7 @@ class Timeline_Helper {
 				'title'    => 'Live ' . number_format($dayCount) . ' days',
 				'days' 	   => $dayCount,
 				'who' 	   => 'You',
-				'category' => 'self-event'
+				'category' => 'milestones'
 			);
 		endwhile;
 	}
@@ -129,7 +129,7 @@ class Timeline_Helper {
 			'title'    => 'Today. Your ' . number_format($ageInDays) . self::getNumberSuffix($ageInDays) . ' day on Earth.',
 			'days' 	   => $ageInDays,
 			'who' 	   => 'You',
-			'category' => 'self-event'
+			'category' => 'milestones'
 		);
 	}
 

@@ -15,7 +15,8 @@ $categories = array(
 	'sport',
 	'science',
 	'history',
-	'death'
+	'death',
+	'milestones'
 );
 
 $bannisterDate = Timeline_Helper::getDateFromNumberOfDaysAfterDob($userDOB, 9175); # Bannister was 9175 days old at first mile.

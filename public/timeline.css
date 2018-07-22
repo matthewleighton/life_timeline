@@ -95,7 +95,7 @@ a {
 #options-wrapper {
 	text-align: center;
 	position: fixed;
-	top: 20%;
+	top: 15%;
 	left: 13%;
 	max-width: 75px;
 }
@@ -105,8 +105,8 @@ a {
 	margin: 0.5em 0.1em;
 	cursor: pointer;
 	transition: filter 0.5s ease-out;
-	width: 5.5em;
-	height: 5.5em;
+	width: 6.8em;
+	height: 6.8em;
 	padding: 1em;
 	text-align: center;
 }
@@ -127,6 +127,7 @@ a {
 #timeline-wrapper {
 	display: inline-block;
 	margin: 0 auto;
+	max-width: 90%;
 }
 
 #timeline-title {
@@ -194,8 +195,8 @@ a {
 #key-wrapper {
 	display: inline-block;
 	position: fixed;
-	right: 15%;
-	top: 20%;
+	right: 17.5%;
+	top: 18%;
 }
 
 .key-color {

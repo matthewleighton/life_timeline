@@ -81,3 +81,18 @@ $dropdownArrow = "<img src='assets/images/down-arrow.png' id='explainer-arrow'/>
 	endforeach;
 	?>
 </div>
+
+<div id="key-wrapper">
+	<div>
+		<div class="key-color" id="key-color-orange"></div>
+		<span>Past Events</span>
+	</div>
+	<div>
+		<div class="key-color" id="key-color-green"></div>
+		<span>Future Events</span>
+	</div>
+	<div>
+		<div class="key-color" id="key-color-blue"></div>
+		<span>Date Milestones</span>
+	</div>
+</div>

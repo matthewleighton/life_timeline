@@ -1,0 +1,235 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline; }
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block; }
+
+body {
+  line-height: 1; }
+
+ol, ul {
+  list-style: none; }
+
+blockquote, q {
+  quotes: none; }
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: '';
+  content: none; }
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0; }
+
+#dob-form {
+  text-align: center; }
+
+.dob-instruction {
+  font-size: 1.2em;
+  letter-spacing: 0.03em;
+  margin: 15px; }
+
+#dob-input {
+  margin: 10px; }
+
+#dob-submit-button {
+  height: 1.8em;
+  position: relative;
+  top: 0.3em;
+  left: -0.7em; }
+
+#dob-submit-image {
+  height: 100%; }
+
+#dob_submit {
+  background: #D5BBB1;
+  color: black;
+  border-style: outset;
+  font-weight: bold;
+  text-shadow: none; }
+
+.dob-error {
+  color: #F98948;
+  font-size: 0.95em; }
+
+#options-wrapper {
+  text-align: center;
+  position: fixed;
+  top: 15%;
+  left: 13%;
+  max-width: 75px; }
+
+.category-toggle {
+  display: block;
+  margin: 0.5em 0.1em;
+  cursor: pointer;
+  transition: filter 0.5s ease-out;
+  width: 6.8em;
+  height: 6.8em;
+  padding: 1em;
+  text-align: center; }
+
+.category-button-label {
+  /*font-weight: bold;*/
+  text-align: center;
+  margin: 0 auto; }
+
+.category-button-image {
+  position: relative;
+  top: -0.5em; }
+
+#key-wrapper {
+  display: inline-block;
+  position: fixed;
+  right: 17.5%;
+  top: 18%; }
+
+.key-color {
+  display: inline-block;
+  height: 20px;
+  width: 20px; }
+
+#key-color-orange {
+  background-color: #F5A65B; }
+
+#key-color-green {
+  background-color: #56C965; }
+
+#key-color-blue {
+  background-color: #8783D1; }
+
+#timeline-explained {
+  font-size: 0.9em;
+  text-align: center; }
+
+#expand-explainer {
+  cursor: pointer; }
+
+#explainer-body {
+  max-height: 0;
+  margin: 1em auto;
+  padding: 0;
+  max-width: 50%;
+  text-align: justify;
+  overflow: hidden;
+  transition: max-height 0.75s ease-in-out; }
+
+@media only screen and (max-width: 1200px) {
+  #explainer-body {
+    max-width: 75%; } }
+
+@media only screen and (max-width: 950px) {
+  #explainer-body {
+    max-width: 100%; } }
+
+#explainer-arrow img {
+  display: inline-block;
+  transition: transform 0.5s ease-out;
+  position: relative;
+  top: 0.2em; }
+
+body {
+  background-color: #272727;
+  color: #FFFFFF;
+  font-family: 'Arimo', sans-serif; }
+
+a {
+  color: inherit; }
+
+#page-wrapper {
+  margin: 0 auto;
+  width: 50%; }
+
+#timeline-wrapper {
+  display: inline-block;
+  margin: 0 auto;
+  max-width: 90%; }
+
+#timeline-title {
+  font-size: 40px;
+  text-align: center;
+  margin: 40px;
+  text-decoration: none; }
+
+#timeline-title a {
+  text-decoration: none; }
+
+.timeline-event {
+  margin: 20px;
+  max-height: 100px;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out, max-height 0.75s ease-out, margin 0.75s ease-out;
+  overflow: hidden;
+  opacity: 1;
+  visibility: visible; }
+
+.past {
+  color: #F5A65B; }
+
+.future {
+  color: #56C965; }
+
+.self-event {
+  color: #8783D1; }
+
+.event-header {
+  margin-bottom: 5px;
+  font-size: 1em; }
+
+.event-date {
+  font-weight: bold; }
+
+.event-sub {
+  font-size: 0.8em; }
+
+.decade-label {
+  cursor: pointer;
+  margin-top: 1.2em;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out, max-height 0.75s ease-out, margin 0.75s ease-out;
+  opacity: 1;
+  max-height: 1em;
+  visibility: visible; }
+
+.decade-label img {
+  display: inline-block;
+  height: 12px;
+  vertical-align: middle; }
+
+#footer {
+  text-align: center;
+  margin: 2em 0; }
+
+.github-logo {
+  width: 50px;
+  text-align: center;
+  margin: 0 auto;
+  display: inline-block; }
+
+.github-logo svg path {
+  pointer-events: all !important; }
+
+.github-logo svg path:hover {
+  fill: #56C965; }

@@ -1,0 +1,37 @@
+#timeline-explained {
+	font-size: 0.9em;
+	text-align: center;
+}
+
+#expand-explainer {
+	cursor: pointer;
+}
+
+#explainer-body {
+	max-height: 0;
+	margin: 1em auto;
+	padding: 0;
+	max-width: 50%;
+	text-align: justify;
+	overflow: hidden;
+	transition: max-height 0.75s ease-in-out;
+}
+
+@media only screen and (max-width: 1200px) {
+	#explainer-body {
+		max-width: 75%;
+	}
+}
+
+@media only screen and (max-width: 950px) {
+	#explainer-body {
+		max-width: 100%;
+	}
+}
+
+#explainer-arrow img {
+	display: inline-block;
+	transition: transform 0.5s ease-out;
+	position: relative;
+	top: 0.2em;
+}

@@ -54,6 +54,7 @@ class Timeline_Helper {
 		self::AddRepeatedLifespanDurationEvents($userDOB, $events);
 		self::addDayIncrementEvents($userDOB, $events);
 		self::addCurrentAgeEvent($userDOB, $events);
+		self::addBirthdayEvent($events);
 
 		$today = new Carbon('today');
 
@@ -128,6 +129,15 @@ class Timeline_Helper {
 		$eventsArray[] = array(
 			'title'    => 'Today. Your ' . number_format($ageInDays) . self::getNumberSuffix($ageInDays) . ' day on Earth.',
 			'days' 	   => $ageInDays,
+			'who' 	   => 'You',
+			'category' => 'milestones'
+		);
+	}
+
+	public function addBirthdayEvent(&$eventsArray) {
+		$eventsArray[] = array(
+			'title'    => 'Be born.',
+			'days' 	   => 0,
 			'who' 	   => 'You',
 			'category' => 'milestones'
 		);

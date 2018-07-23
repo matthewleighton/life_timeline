@@ -33,17 +33,12 @@ $dropdownArrow = "<img src='assets/images/down-arrow.png' id='explainer-arrow'/>
 	<?php
 	foreach ($categories as $category):
 		?>
-		<button 
-			class="category-toggle"
-			id="<?php echo $category; ?>-toggle-btn"
-			onclick="toggleCategoryDisplay('<?php echo $category; ?>')"
-		>
-			<img 
-			src="assets/images/<?php echo $category; ?>.svg"
-			class="category-button-image"
-			/>
-			<span class="category-button-label"><?php echo ucfirst($category); ?></span>
-		</button>
+		<img
+		src="assets/images/<?php echo $category; ?>.svg"
+		class="category-button-image"
+		onclick="toggleCategoryDisplay('<?php echo $category; ?>')"
+		id="<?php echo $category; ?>-toggle-btn"
+		/>
 		<?php
 	endforeach;	
 	?>

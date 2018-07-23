@@ -11,10 +11,8 @@
 	position: relative;
 }
 
-.category-toggle:hover .category-tooltip {
-	/*visibility: visible;*/
-	opacity: 1;
-	transition: opacity 0.3s;
+.category-image:hover + .category-tooltip {
+	visibility: visible;
 }
 
 .category-image {
@@ -27,8 +25,7 @@
 }
 
 .category-tooltip {
-	/*visibility: hidden;*/
-	opacity: 0;
+	visibility: hidden;
 	width: 120px;
 	background-color: black;
 	color: #fff;

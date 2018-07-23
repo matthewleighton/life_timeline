@@ -87,10 +87,8 @@ table {
 .category-toggle {
   position: relative; }
 
-.category-toggle:hover .category-tooltip {
-  /*visibility: visible;*/
-  opacity: 1;
-  transition: opacity 0.3s; }
+.category-image:hover + .category-tooltip {
+  visibility: visible; }
 
 .category-image {
   cursor: pointer;
@@ -101,8 +99,7 @@ table {
   margin-top: 1vh; }
 
 .category-tooltip {
-  /*visibility: hidden;*/
-  opacity: 0;
+  visibility: hidden;
   width: 120px;
   background-color: black;
   color: #fff;

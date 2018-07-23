@@ -4,11 +4,20 @@ if (onTimelinePage()) {
 	var categoryToggleStatus = {};
 	var explainerStatus = 0;
 	var explainerArrowRotation = 0;
+} else if (onDobPage()) {
+	var dobInput = document.getElementById('dob-input');
+	dobInput.focus();
+	dobInput.select();
 }
 
 // Return true if the user is on the timeline page.
 function onTimelinePage() {
 	return document.getElementById('timeline-wrapper') ? true : false;
+}
+
+// Return true if the user is on the DOB entry page.
+function onDobPage() {
+	return document.getElementById('dob-form') ? true : false;
 }
 
 // Used to return the CSS to default when hidden elements are toggled back to active.

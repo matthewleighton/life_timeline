@@ -82,12 +82,12 @@ function toggleCategoryDisplay(category) {
 
 // Hide a decade marker if all its events have been hidden by the category toggle.
 function toggleDecadeMarkerVisibility() {
-	var decadeMarkers = document.getElementsByClassName('decade-marker');
+	var decadeMarkers = document.getElementsByClassName('decade-label');
 
 	// Loop over each decade.
 	for (var i = 0; i < decadeMarkers.length; i++) {
 		
-		var decade = decadeMarkers[i].textContent;
+		var decade = decadeMarkers[i].textContent.trim();
 		var eventsInDecade = document.getElementsByClassName('event-decade-' + decade);
 
 		// Hide the decade if EVERY event within it has been hidden.

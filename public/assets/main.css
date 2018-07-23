@@ -82,7 +82,8 @@ table {
   top: 10%;
   left: 16%;
   max-width: 75px;
-  height: 100vh; }
+  height: 100vh;
+  padding: 15px; }
 
 .category-toggle {
   position: relative; }
@@ -246,7 +247,7 @@ a {
 .github-logo svg path:hover {
   fill: #56C965; }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 480px), screen and (max-height: 480px) {
   #page-wrapper {
     width: 90%; }
   #options-wrapper {

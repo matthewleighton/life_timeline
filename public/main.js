@@ -4,6 +4,10 @@ if (onTimelinePage()) {
 	var categoryToggleStatus = {};
 	var explainerStatus = 0;
 	var explainerArrowRotation = 0;
+
+	for (var i = categories.length - 1; i >= 0; i--) {
+		categoryToggleStatus[categories[i]] = true;
+	}
 } else if (onDobPage()) {
 	var dobInput = document.getElementById('dob-input');
 	dobInput.focus();
@@ -35,16 +39,43 @@ function getOriginalCSS(className) {
 	};
 }
 
-function toggleCategoryDisplay(category) {
+function toggleCategoryDisplay(category, state) {
+	
+	var initialToggleValue;
+	
+	// If the initialToggleValue is ON, we'll be turning the category off.
+	// A state value can be used to fake the initialToggleValue.
+	if (state === true) {
+		initialToggleValue = false;
+	} else if (state === false) {
+		initialToggleValue = true;
+	} else {
+		 initialToggleValue = categoryToggleStatus[category];
+	}
+
+	if (category == "all") {
+		// The new desired state is the opposite of the initialToggleValue.
+		var massState = (initialToggleValue === true) ? false : true;
+
+		for (var i = categories.length - 1; i >= 0; i--) {
+			if (categories[i] != 'all') {
+				toggleCategoryDisplay(categories[i], massState);
+			}
+		}
+
+		categoryToggleStatus['all'] = massState;
+		changeCategoryButtonColor('all', massState);
+
+		return;
+	}
+
 	var eventsInCategory = document.getElementsByClassName(category);
-	var initialToggleValue = categoryToggleStatus[category];
-	var toggleButton = document.getElementById(category + "-toggle-btn");
+	
 
 	var newEventOpacityValue,
 		newEventHeightValue, 
 		newEventMarginValue,
 		newEventVisibility;
-
 
 	if (initialToggleValue === false) {
 		/* Showing events */
@@ -55,7 +86,7 @@ function toggleCategoryDisplay(category) {
 		newEventMarginValue = originalEventCSS.margin;
 		newEventVisibility = originalEventCSS.visibility;
 
-		toggleButton.style.filter = "";
+		changeCategoryButtonColor(category, true);
 
 	} else {
 		/* Hiding events */
@@ -66,9 +97,10 @@ function toggleCategoryDisplay(category) {
 		newEventMarginValue = '-20';
 		newEventVisibility = 'hidden';
 
-		toggleButton.style.filter = "grayscale(100%)";
+		changeCategoryButtonColor(category, false);
 	}
 
+	/* Applying new styling to hide/show events */
 	for (var i = 0; i < eventsInCategory.length; i++) {
 		var event = eventsInCategory[i];
 		event.style.opacity = newEventOpacityValue;
@@ -78,6 +110,15 @@ function toggleCategoryDisplay(category) {
 	}
 
 	toggleDecadeMarkerVisibility();
+}
+
+// Switch a category button between color and black/white.
+// State value of true gives color. False gives B&W.
+function changeCategoryButtonColor(category, state) {
+	var button = document.getElementById(category + "-toggle-btn");
+	var filterValue = state ? "" : "grayscale(100%)";
+
+	button.style.filter = filterValue;
 }
 
 // Hide a decade marker if all its events have been hidden by the category toggle.

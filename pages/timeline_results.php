@@ -16,13 +16,19 @@ $categories = array(
 	'science',
 	'history',
 	'death',
-	'milestones'
+	'milestones',
+	'all'
 );
+$json_categories = json_encode($categories);
 
 $bannisterDate = Timeline_Helper::getDateFromNumberOfDaysAfterDob($userDOB, 9175); # Bannister was 9175 days old at first mile.
 
 $dropdownArrow = "<img src='assets/images/down-arrow.png' id='explainer-arrow'/>";
 ?>
+
+<script>
+	var categories = <?php echo $json_categories; ?>;
+</script>
 
 <div id="timeline-explained">
 	<p id="expand-explainer" onclick="toggleExplainer()">Wait, what is this? <span id="explainer-arrow"><?php echo $dropdownArrow; ?></span></p>

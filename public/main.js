@@ -1,8 +1,15 @@
-var originalEventCSS = getOriginalCSS('timeline-event');
-var originalDecadeCSS = getOriginalCSS('decade-label');
-var categoryToggleStatus = {};
-var explainerStatus = 0;
-var explainerArrowRotation = 0;
+if (onTimelinePage()) {
+	var originalEventCSS = getOriginalCSS('timeline-event');
+	var originalDecadeCSS = getOriginalCSS('decade-label');
+	var categoryToggleStatus = {};
+	var explainerStatus = 0;
+	var explainerArrowRotation = 0;
+}
+
+// Return true if the user is on the timeline page.
+function onTimelinePage() {
+	return document.getElementById('timeline-wrapper') ? true : false;
+}
 
 // Used to return the CSS to default when hidden elements are toggled back to active.
 function getOriginalCSS(className) {

@@ -1,5 +1,10 @@
-@media screen and (max-width: 480px), screen and (max-height: 480px) {
-	
+@media screen and (max-width: 975px) {
+	#options-wrapper {
+		left: 7%;
+	}
+}
+
+@media screen and (max-width: 480px), screen and (max-height: 480px) {	
 	#page-wrapper {
 		width: 90%;
 	}
